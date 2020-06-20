@@ -23,18 +23,31 @@ def horizontalCheck():
 
 def verticalCheck():
 	v_aux = ["","",""]
-#	v_aux = np.array(v)
 	for i in [0, 1, 2]:
 		for j in [0, 1, 2]:
 			v_aux[j] = mtx[j,i]
-		print(v_aux)
-#		if np.array_equal(["X", "X", "X"], v_aux) or np.array_equal(["O", "O", "O"], v_aux): return True
-#		else: return False
+		if np.array_equal(["X", "X", "X"], v_aux) or np.array_equal(["O", "O", "O"], v_aux): return True
+		else: return False
 		
+def diagonalOne():
+	v_aux = ["","",""]
+	for i in [0,1,2]:
+		v_aux[i] = mtx[i,i]
+	if np.array_equal(["X", "X", "X"], v_aux) or np.array_equal(["O", "O", "O"], v_aux): return True
+	else: return False
+
+def digonalTwo():
+	v_aux = ["","",""]
+	j_aux = 2
+	for i in [0, 1, 2]:
+		v_aux[i] = mtx[i,j_aux]
+		j_aux -= 1
+	if np.array_equal(["X", "X", "X"], v_aux) or np.array_equal(["O", "O", "O"], v_aux): return True
+	else: return False
 
 def endGame():
 	verticalCheck()
-	if horizontalCheck() or verticalCheck():
+	if horizontalCheck() or verticalCheck() or diagonalOne() or digonalTwo():
 		return True
 	else: return False
 
